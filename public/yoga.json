@@ -1,0 +1,102 @@
+[
+    {
+        "classImage": "image_url_1",
+        "className": "Zenflow",
+        "instructorName": "Jessica Smith",
+        "instructorImage": "David Patel",
+        "instructorEmail": "instructor1@example.com",
+        "availableSeats": 15,
+        "studentNumber": 30,
+        "price": 500
+    },
+    {
+        "classImage": "image_url_2",
+        "className": "Downward flow",
+        "instructorName": "Emily Thomson",
+        "instructorImage": "",
+        "instructorEmail": "instructor2@example.com",
+        "availableSeats": 12,
+        "studentNumber": 34,
+        "price": 400
+    },
+    {
+        "classImage": "image_url_3",
+        "className": "Tree Pose",
+        "instructorName": "Maria Rodiguz",
+        "instructorImage": "",
+        "instructorEmail": "instructor3@example.com",
+        "availableSeats": 8,
+        "studentNumber": 40,
+        "price": 300
+    },
+    {
+        "classImage": "image_url_4",
+        "className": "Warrior Pose",
+        "instructorName": "Emily Sharma",
+        "instructorImage": "",
+        "instructorEmail": "instructor4@example.com",
+        "availableSeats": 10,
+        "studentNumber": 20,
+        "price": 200
+    },
+    {
+        "classImage": "image_url_5",
+        "className": "Tranquil",
+        "instructorName": "Priya Gupta",
+        "instructorImage": "",
+        "instructorEmail": "instructor5@example.com",
+        "availableSeats": 20,
+        "studentNumber": 50,
+        "price": 240
+    },
+    {
+        "classImage": "image_url_6",
+        "className": "Inner Journey",
+        "instructorName": "Olivia Lee",
+        "instructorImage": "",
+        "instructorEmail": "instructor6@example.com",
+        "availableSeats": 5,
+        "studentNumber": 37,
+        "price": 400
+    },
+    {
+        "classImage": "image_url_7",
+        "className": "Sacred Space",
+        "instructorName": "Ethan Wilson",
+        "instructorImage": "",
+        "instructorEmail": "instructor7@example.com",
+        "availableSeats": 10,
+        "studentNumber": 60,
+        "price": 500
+    },
+    {
+        "classImage": "image_url_8",
+        "className": "Divine Balance",
+        "instructorName": "Sanjana Khan",
+        "instructorImage": "",
+        "instructorEmail": "instructor8@example.com",
+        "availableSeats": 15,
+        "studentNumber": 57,
+        "price": 800
+    },
+    {
+        "classImage": "image_url_9",
+        "className": "MIndful Movement",
+        "instructorName": "Smith Jessie",
+        "instructorImage": "",
+        "instructorEmail": "instructor9@example.com",
+        "availableSeats": 7,
+        "studentNumber": 47,
+        "price": 200
+    },
+    {
+        "classImage": "image_url_10",
+        "className": "Blissful Asanas",
+        "instructorName": "Michel Anderson",
+        "instructorImage": "i",
+        "instructorEmail": "instructor10@example.com",
+        "availableSeats": 18,
+        "studentNumber": 44,
+        "price": 450
+    }
+]
