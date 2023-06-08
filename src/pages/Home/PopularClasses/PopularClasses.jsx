@@ -7,7 +7,11 @@ const PopularClasses = () => {
     const style = {
         fontFamily: 'Playfair Display, serif'
     };
-    console.log(classes);
+
+    const sortedByStudents = [...classes].sort((a, b) => b.studentNumber - a.studentNumber);
+
+    const topSixClasses = sortedByStudents.slice(0, 6);
+
     return (
         <div className='  pt-1 pb-20'>
             <div style={style} className='text-center my-24 '>
@@ -20,7 +24,7 @@ const PopularClasses = () => {
             <div className='w-4/5 flex mx-auto'>
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8'>
                     {
-                        classes.map(classInfo => <PopularClassCard onlyClasses={true} key={classInfo._id} classInfo={classInfo}></PopularClassCard>)
+                        topSixClasses.map(classInfo => <PopularClassCard onlyClasses={true} key={classInfo._id} classInfo={classInfo}></PopularClassCard>)
                     }
                 </div>
             </div>
