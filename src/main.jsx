@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './Routes/Routes';
-import AuthProvider from './context/AuthProvider';
+import AuthProvider from './context/AuthProvider/AuthProvider';
 import {
   QueryClient,
   QueryClientProvider,
