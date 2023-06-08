@@ -23,12 +23,11 @@ const Navbar = () => {
 
     const menuItem = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/about'>Instructors</Link></li>
-        <li><Link to='/appointment'>Classes</Link></li>
+        <li><Link to='/instructor'>Instructors</Link></li>
+        <li><Link to='/classes'>Classes</Link></li>
         {
-            user ? <li>
-                <button className="btn btn-ghost lg:text-lg" onClick={handleLogOut}>Log out</button>
-            </li>
+            user ?
+                <li> <button className="btn btn-ghost" onClick={handleLogOut}>Log Out</button></li>
                 :
                 <li><Link to='/login'>Login</Link></li>
         }
@@ -57,9 +56,9 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user &&
-                    <div title={user?.displayName} className="avatar">
-                        <div className="w-16 h-16 rounded-full">
-                            <img src={user?.photoURL} alt='' />
+                    <div title={user?.displayName} className="avatar mr-4">
+                        <div className="w-14 h-14 rounded-full">
+                            <img src={user?.photoURL} alt='userphoto' />
                         </div>
                     </div>
                 }
