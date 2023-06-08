@@ -4,6 +4,7 @@ import PopularClassCard from "../PopularClassCard/PopularClassCard";
 const PopularClasses = () => {
     const [classes] = useClasses();
 
+    // custom font-family use
     const style = {
         fontFamily: 'Playfair Display, serif'
     };

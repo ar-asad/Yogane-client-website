@@ -10,6 +10,10 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
         fontFamily: 'Playfair Display, serif'
     };
 
+    const handleSelect=()=>{
+        
+    }
+
     return (
         <div className={onlyClasses ? "card bg-base-100 shadow-xl" : "card bg-base-100 shadow-xl rounded-none"}>
             {
@@ -36,7 +40,7 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
                         {allClasses && <>
                             <p>Available Seat : {availableSeats}</p>
                             <div className="card-actions justify-start">
-                                <button disabled={availableSeats === 0 || user?.role === 'admin' || user?.role === 'instructor'} className="btn btn-error rounded-sm  lg:px-6 text-white mr-4 mt-2">Select Now</button>
+                                <button onClick={handleSelect} disabled={availableSeats === 0 || user?.role === 'admin' || user?.role === 'instructor'} className="btn btn-error rounded-sm  lg:px-6 text-white mr-4 mt-2">Select Now</button>
                             </div>
                         </>}
                     </div>

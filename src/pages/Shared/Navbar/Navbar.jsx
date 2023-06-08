@@ -14,6 +14,10 @@ const Navbar = () => {
         filter: 'brightness(0) saturate(100%) invert(17%) sepia(84%) saturate(4728%) hue-rotate(354deg) brightness(92%) contrast(92%)'
     };
 
+    // for testing perpus
+    const isAdmin = '';
+    const isInstructor = '';
+
     // user logout
     const handleLogOut = () => {
         logOut()
@@ -25,6 +29,13 @@ const Navbar = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/instructor'>Instructors</Link></li>
         <li><Link to='/classes'>Classes</Link></li>
+        {
+            isAdmin ? <li><Link to="/dashboard/adminhome">Dashboard</Link></li>
+                :
+                isInstructor ? <li><Link to="/dashboard/userhome">Dashboard</Link></li>
+                    :
+                    <li><Link to="/dashboard/userhome">Dashboard</Link></li>
+        }
         {
             user ?
                 <li> <button className="btn btn-ghost" onClick={handleLogOut}>Log Out</button></li>
