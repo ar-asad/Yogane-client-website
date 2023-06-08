@@ -1,21 +1,37 @@
 import { Link } from "react-router-dom";
 import logo from '../../../assets/home/logo.png';
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext)
     // custom font-family use
     const style = {
         fontFamily: 'Playfair Display, serif'
     };
+    // custom color use
     const logoColor = {
         filter: 'brightness(0) saturate(100%) invert(17%) sepia(84%) saturate(4728%) hue-rotate(354deg) brightness(92%) contrast(92%)'
     };
+
+    // user logout
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error));
+    }
 
     const menuItem = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/about'>Instructors</Link></li>
         <li><Link to='/appointment'>Classes</Link></li>
-        <li><Link to='/login'>Login</Link></li>
-        <li><Link to='/signup'>SignUp</Link></li>
+        {
+            user ? <li>
+                <button className="btn btn-ghost lg:text-lg" onClick={handleLogOut}>Log out</button>
+            </li>
+                :
+                <li><Link to='/login'>Login</Link></li>
+        }
     </>
 
     return (
@@ -40,21 +56,12 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user ?
-                        <div className='flex items-center'>
-                            <li className='font-semibold '>
-                                <div title={user?.displayName} className="avatar">
-                                    <div className="w-16 h-16 rounded-full">
-                                        <LazyLoad>
-                                            <img src={user?.photoURL} alt='' />
-                                        </LazyLoad>
-                                    </div>
-                                </div>
-                            </li>
-                            <button className="btn btn-ghost lg:text-lg" onClick={handleLogOut}>Log out</button>
+                    user &&
+                    <div title={user?.displayName} className="avatar">
+                        <div className="w-16 h-16 rounded-full">
+                            <img src={user?.photoURL} alt='' />
                         </div>
-                        :
-                        <li><Link to='/login'>Login</Link></li>
+                    </div>
                 }
             </div>
         </div>
