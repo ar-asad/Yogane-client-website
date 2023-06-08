@@ -7,6 +7,7 @@
         "instructorEmail": "sanjana@example.com",
         "availableSeats": 15,
         "studentNumber": 30,
+        "status": "aproved",
         "price": 500
     },
     {
@@ -17,6 +18,7 @@
         "instructorEmail": "ethandf@example.com",
         "availableSeats": 12,
         "studentNumber": 34,
+        "status": "aproved",
         "price": 400
     },
     {
@@ -27,6 +29,7 @@
         "instructorEmail": "sanjana@example.com",
         "availableSeats": 8,
         "studentNumber": 40,
+        "status": "aproved",
         "price": 300
     },
     {
@@ -37,6 +40,7 @@
         "instructorEmail": "ethan@example.com",
         "availableSeats": 10,
         "studentNumber": 20,
+        "status": "aproved",
         "price": 200
     },
     {
@@ -47,6 +51,7 @@
         "instructorEmail": "chandra@example.com",
         "availableSeats": 20,
         "studentNumber": 50,
+        "status": "aproved",
         "price": 240
     },
     {
@@ -57,6 +62,7 @@
         "instructorEmail": "brad@example.com",
         "availableSeats": 5,
         "studentNumber": 37,
+        "status": "aproved",
         "price": 400
     },
     {
@@ -67,6 +73,7 @@
         "instructorEmail": "ethan@example.com",
         "availableSeats": 10,
         "studentNumber": 60,
+        "status": "aproved",
         "price": 500
     },
     {
@@ -77,6 +84,7 @@
         "instructorEmail": "sanjana@example.com",
         "availableSeats": 15,
         "studentNumber": 57,
+        "status": "aproved",
         "price": 800
     },
     {
@@ -87,6 +95,7 @@
         "instructorEmail": "smith@example.com",
         "availableSeats": 7,
         "studentNumber": 47,
+        "status": "aproved",
         "price": 200
     },
     {
@@ -97,6 +106,7 @@
         "instructorEmail": "smith@example.com",
         "availableSeats": 18,
         "studentNumber": 44,
+        "status": "aproved",
         "price": 450
     }
 ]
