@@ -1,6 +1,15 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
-const PopularClassCard = ({ classInfo, onlyClasses }) => {
-    const { classImage, className, instructorImage, instructorName, instructorEmail, studentNumber } = classInfo;
+const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
+    const { user } = useContext(AuthContext)
+    const { classImage, className, instructorImage, instructorName, instructorEmail, studentNumber, availableSeats } = classInfo;
+
+    // custom font-family use
+    const style = {
+        fontFamily: 'Playfair Display, serif'
+    };
+
     return (
         <div className={onlyClasses ? "card bg-base-100 shadow-xl" : "card bg-base-100 shadow-xl rounded-none"}>
             {
@@ -19,8 +28,17 @@ const PopularClassCard = ({ classInfo, onlyClasses }) => {
                         <p className="text-red-500">{instructorName}</p>
                     </div>
                     <div className="card-body mt-8 px-2">
-                        <h2 className="card-title">{className}-Yoga</h2>
-                        <p>Student Number : {studentNumber}</p>
+                        <div className="flex justify-between">
+                            <h2 className="card-title">{className}-Yoga</h2>
+                            {allClasses && <h3 style={style} className="text-center font-semibold text-4xl text-red-500 mr-6 underline">${studentNumber}</h3>}
+                        </div>
+                        {onlyClasses && <p>Student Number : {studentNumber}</p>}
+                        {allClasses && <>
+                            <p>Available Seat : {availableSeats}</p>
+                            <div className="card-actions justify-start">
+                                <button disabled={availableSeats === 0 || user?.role === 'admin' || user?.role === 'instructor'} className="btn btn-error rounded-sm  lg:px-6 text-white mr-4 mt-2">Select Now</button>
+                            </div>
+                        </>}
                     </div>
                 </div>
             }

@@ -5,7 +5,7 @@
         "instructorName": "Sanjana Khan",
         "instructorImage": "https://i.ibb.co/bFKKS0z/trainer8.jpg",
         "instructorEmail": "sanjana@example.com",
-        "availableSeats": 15,
+        "availableSeats": 0,
         "studentNumber": 30,
         "status": "aproved",
         "price": 500
