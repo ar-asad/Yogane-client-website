@@ -1,37 +1,47 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import Navbar from "../pages/Shared/Navbar/Navbar";
 
 const Dashboard = () => {
+
+    const isAdmin = '';
+    const isInstructor = '';
+
     return (
-        <div className="drawer drawer-mobile ">
-            <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
-                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-                <Outlet></Outlet>
+        <div>
+            <div className="drawer lg:drawer-open ">
+                <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+                <div className="drawer-content">
+                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                    <Outlet></Outlet>
 
-            </div>
-            <div className="drawer-side bg-[#D1A054]">
-                <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80">
+                </div>
+                <div className="drawer-side bg-red-300">
+                    <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+                    <ul className="menu p-4 w-80 pt-10">
 
-                    {
-                        isAdmin ? <>
-                            <li><NavLink to="/dashboard/adminhome">Mangage Classes</NavLink></li>
-                            <li><NavLink to="/dashboard/addItem"> Manage Users</NavLink></li>
-                        </> :
-                            isInstructors ? <>
-                                <li><NavLink to="/dashboard/adminhome">My Classes</NavLink></li>
-                                <li><NavLink to="/dashboard/addItem">Add a Class</NavLink></li>
-                            </>
-                                :
-                                <>
-                                    <li><NavLink to="/dashboard/userhome">My Selected Classes</NavLink></li>
-                                    <li><NavLink to="/">My Enrolled Classes</NavLink></li>
+                        {
+                            isAdmin ? <>
+                                <li className="mb-3 text-lg"><Link to="/dashboard/manageUser">Mangage Classes</Link></li>
+                                <li className="mb-3 text-lg"><Link to="/dashboard/manageClass"> Manage Users</Link></li>
+                            </> :
+                                isInstructor ? <>
+                                    <li className="mb-3 text-lg"><Link to="/dashboard/myClass">My Classes</Link></li>
+                                    <li className="mb-3 text-lg"><Link to="/dashboard/addClass">Add a Class</Link></li>
                                 </>
-                    }
-                </ul>
+                                    :
+                                    <>
+                                        <li className="mb-3 text-lg"><Link to="/dashboard/selectClass">My Selected Classes</Link></li>
+                                        <li className="mb-3 text-lg"><Link to="/dashboard/enrollClass">My Enrolled Classes</Link></li>
+                                    </>
+                        }
+                    </ul>
+                </div>
             </div>
+
+
         </div>
     );
 };
 
 export default Dashboard;
+

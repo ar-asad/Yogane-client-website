@@ -30,11 +30,11 @@ const Navbar = () => {
         <li><Link to='/instructor'>Instructors</Link></li>
         <li><Link to='/classes'>Classes</Link></li>
         {
-            isAdmin ? <li><Link to="/dashboard/adminhome">Dashboard</Link></li>
+            isAdmin ? <li><Link to="/dashboard/manageClass">Dashboard</Link></li>
                 :
-                isInstructor ? <li><Link to="/dashboard/userhome">Dashboard</Link></li>
+                isInstructor ? <li><Link to="/dashboard/myClass">Dashboard</Link></li>
                     :
-                    <li><Link to="/dashboard/userhome">Dashboard</Link></li>
+                    <li><Link to="/dashboard/selectClass">Dashboard</Link></li>
         }
         {
             user ?
