@@ -16,23 +16,6 @@ const Navbar = () => {
         <li><Link to='/appointment'>Classes</Link></li>
         <li><Link to='/login'>Login</Link></li>
         <li><Link to='/signup'>SignUp</Link></li>
-        {/* {
-            user?.uid ? 
-               <div className='flex items-center'>
-                    <li className='font-semibold '>
-                        <div title={user?.displayName} className="avatar">
-                            <div className="w-16 h-16 rounded-full">
-                                <LazyLoad>
-                                    <img src={user?.photoURL} alt='' />
-                                </LazyLoad>
-                            </div>
-                        </div>
-                    </li>
-                    <button className="btn btn-ghost lg:text-lg" onClick={handleLogOut}>Log out</button>
-                </div>
-                :
-                <li><Link to='/login'>Login</Link></li>
-        } */}
     </>
 
     return (
@@ -56,7 +39,23 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {
+                    user ?
+                        <div className='flex items-center'>
+                            <li className='font-semibold '>
+                                <div title={user?.displayName} className="avatar">
+                                    <div className="w-16 h-16 rounded-full">
+                                        <LazyLoad>
+                                            <img src={user?.photoURL} alt='' />
+                                        </LazyLoad>
+                                    </div>
+                                </div>
+                            </li>
+                            <button className="btn btn-ghost lg:text-lg" onClick={handleLogOut}>Log out</button>
+                        </div>
+                        :
+                        <li><Link to='/login'>Login</Link></li>
+                }
             </div>
         </div>
     );
