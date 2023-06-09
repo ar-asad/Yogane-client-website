@@ -1,17 +1,63 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
+import useClasses from "../../../hooks/useClasses";
 
 const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
     const { user } = useContext(AuthContext)
-    const { classImage, className, instructorImage, instructorName, instructorEmail, studentNumber, availableSeats } = classInfo;
+    const [refetch] = useClasses();
+    const { classImage, className, instructorImage, instructorName, instructorEmail, studentNumber, availableSeats, _id, price } = classInfo;
+
+    const navigate = useNavigate();
+    const location = useLocation();
 
     // custom font-family use
     const style = {
         fontFamily: 'Playfair Display, serif'
     };
 
-    const handleSelect=()=>{
-        
+    const handleSelect = classInfo => {
+        console.log(classInfo);
+        if (user && user?.email) {
+            const selectClass = { classId: _id, className, classImage, price, email: user?.email }
+            console.log(selectClass);
+            fetch('http://localhost:5000/selectclass', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(selectClass)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        refetch();
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'This class booked successfully.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
+        }
+        else {
+            Swal.fire({
+                title: 'Please login first before selecting the class',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login now!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', { state: { from: location } })
+                }
+            })
+        }
+
     }
 
     return (
@@ -40,7 +86,7 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
                         {allClasses && <>
                             <p>Available Seat : {availableSeats}</p>
                             <div className="card-actions justify-start">
-                                <button onClick={handleSelect} disabled={availableSeats === 0 || user?.role === 'admin' || user?.role === 'instructor'} className="btn btn-error rounded-sm  lg:px-6 text-white mr-4 mt-2">Select Now</button>
+                                <button onClick={() => handleSelect(classInfo)} disabled={availableSeats === 0 || user?.role === 'admin' || user?.role === 'instructor'} className="btn btn-error rounded-sm  lg:px-6 text-white mr-4 mt-2">Select Now</button>
                             </div>
                         </>}
                     </div>
