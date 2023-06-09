@@ -14,20 +14,23 @@ const SocialLogin = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
-                const loggedInUser = result.user;
-                console.log(loggedInUser);
-                // const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
-                // fetch('https://bistro-boss-server-fawn.vercel.app/users', {
-                //     method: 'POST',
-                //     headers: {
-                //         'content-type': 'application/json'
-                //     },
-                //     body: JSON.stringify(saveUser)
-                // })
-                //     .then(res => res.json())
-                //     .then(() => {
-                //         navigate(from, { replace: true });
-                //     })
+                const logInUser = result.user;
+                console.log(logInUser);
+                const saveUser = {
+                    name: logInUser.displayName,
+                    email: logInUser.email
+                }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from, { replace: true });
+                    })
             })
             .catch(error => console.log(error))
     }

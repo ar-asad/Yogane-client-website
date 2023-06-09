@@ -21,15 +21,15 @@ const Login = () => {
         const password = form.password.value;
         console.log(email, password);
 
-        // signIn(email, password)
-        //     .then(result => {
-        //         console.log(result.user);
-        //         navigate(from, { replace: true });
-        //         form.reset();
-        //     })
-        //     .catch(e => {
-        //         setError(e.message)
-        //     })
+        signIn(email, password)
+            .then(result => {
+                console.log(result.user);
+                navigate(from, { replace: true });
+                form.reset();
+            })
+            .catch(e => {
+                setError(e.message)
+            })
     }
 
     return (

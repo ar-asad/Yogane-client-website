@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FaLock, FaUserCircle, FaUnlockAlt } from "react-icons/fa";
 import { BsDownload } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
@@ -8,49 +8,47 @@ import SocialLogin from "../Login/SocialLogin/SocialLogin";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
     const [error, setError] = useState(null);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     // const navigate = useNavigate();
 
     const onSubmit = data => {
 
-        // createUser(data.email, data.password)
-        //     .then(result => {
-        //         console.log(result.user)
+        createUser(data.email, data.password)
+            .then(result => {
+                console.log(result.user)
 
-        // updateUserProfile(data.name, data.photoURL)
-        //     .then(() => {
-        //         // const saveUser = { name: data.name, email: data.email }
-        //         // fetch('https://bistro-boss-server-fawn.vercel.app/users', {
-        //         //     method: 'POST',
-        //         //     headers: {
-        //         //         'content-type': 'application/json'
-        //         //     },
-        //         //     body: JSON.stringify(saveUser)
-        //     })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.insertedId) {
-        //             reset();
-        //             Swal.fire({
-        //                 position: 'top-end',
-        //                 icon: 'success',
-        //                 title: 'User created successfully.',
-        //                 showConfirmButton: false,
-        //                 timer: 1500
-        //             });
-        //             navigate('/');
-        //         }
-        //     })
-
-
-
-        // })
-        // .catch(error => setError(error.message))
-        // })
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        const saveUser = { name: data.name, email: data.email }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: 'User created successfully.',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    Navigate('/');
+                                }
+                            })
+                    })
+                    .catch(error => setError(error.message))
+            })
     };
 
     return (
