@@ -21,7 +21,6 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
         console.log(classInfo);
         if (user && user?.email) {
             const selectClass = { classId: _id, className, classImage, price, email: user?.email }
-            console.log(selectClass);
             fetch('http://localhost:5000/selectclass', {
                 method: 'POST',
                 headers: {
@@ -32,7 +31,7 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.insertedId) {
-                        refetch();
+                        // refetch();
                         Swal.fire({
                             position: 'center',
                             icon: 'success',

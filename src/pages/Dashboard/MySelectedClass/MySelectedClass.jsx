@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+import MySelectedClassCard from "../MySelectedClassCard/MySelectedClassCard";
 
 
 const MySelectedClass = () => {
@@ -12,10 +13,33 @@ const MySelectedClass = () => {
             return res.json();
         }
     })
-    console.log(mySelectclass);
     return (
-        <div>
-            <h2>amr sonar bangal</h2>
+        <div className="overflow-x-auto w-full p-10">
+            <table className="table w-full">
+                <thead>
+                    <tr>
+                        <th>
+                        </th>
+                        <th>Class </th>
+                        <th>Class Name</th>
+                        <th>Class Price</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        mySelectclass.map((selectClass, index) => <MySelectedClassCard
+                            key={selectClass._id}
+                            index={index}
+                            selectClass={selectClass}
+                            refetch={refetch}
+                        >
+                        </MySelectedClassCard>)
+                    }
+                </tbody>
+            </table>
+
         </div>
     );
 };

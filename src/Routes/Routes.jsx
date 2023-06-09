@@ -14,6 +14,7 @@ import ManageClass from "../pages/Dashboard/ManageClass/ManageClass";
 import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 
 export const router = createBrowserRouter([
@@ -55,6 +56,11 @@ export const router = createBrowserRouter([
             {
                 path: 'enrollClass',
                 element: <MyEnrollClass></MyEnrollClass>
+            },
+            {
+                path: 'payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/selectclass/${params.id}`)
             },
 
             // Only Instructor dashboard route
