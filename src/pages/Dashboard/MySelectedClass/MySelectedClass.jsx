@@ -13,6 +13,10 @@ const MySelectedClass = () => {
             return res.json();
         }
     })
+
+    const withoutPayClasses = mySelectclass.filter(classes => classes.paid !== true)
+    console.log(withoutPayClasses);
+
     return (
         <div className="overflow-x-auto w-full p-10">
             <table className="table w-full">
@@ -29,7 +33,7 @@ const MySelectedClass = () => {
                 </thead>
                 <tbody>
                     {
-                        mySelectclass.map((selectClass, index) => <MySelectedClassCard
+                        withoutPayClasses.map((selectClass, index) => <MySelectedClassCard
                             key={selectClass._id}
                             index={index}
                             selectClass={selectClass}

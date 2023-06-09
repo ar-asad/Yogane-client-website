@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
-const CheckOutForm = () => {
+const CheckOutForm = ({ payClass }) => {
     const { user } = useContext(AuthContext)
     const stripe = useStripe();
     const elements = useElements();
@@ -12,13 +12,27 @@ const CheckOutForm = () => {
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
 
+    const { price, _id } = payClass;
+
+
+    // useEffect(() => {
+    //     axiosSecure.post('/create-payment-intent', { price })
+    //         .then(res => {
+    //             console.log(res.data.clientSecret)
+    //             setClientSecret(res.data.clientSecret);
+    //         })
+    // }, [])
     useEffect(() => {
-        axiosSecure.post('/create-payment-intent', { price })
-            .then(res => {
-                console.log(res.data.clientSecret)
-                setClientSecret(res.data.clientSecret);
-            })
-    }, [])
+        fetch("http://localhost:5000/create-payment-intent", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ price }),
+        })
+            .then((res) => res.json())
+            .then((data) => setClientSecret(data.clientSecret));
+    }, [price])
 
 
     const handleSubmit = async (event) => {
@@ -52,7 +66,7 @@ const CheckOutForm = () => {
             clientSecret,
             {
                 payment_method: {
-                    card: card,
+                    card,
                     billing_details: {
                         email: user?.email || 'unknown',
                         name: user?.displayName || 'anonymous'
@@ -69,23 +83,37 @@ const CheckOutForm = () => {
         setProcessing(false)
         if (paymentIntent.status === 'succeeded') {
             setTransactionId(paymentIntent.id);
-            // save payment information to the server
+            // store payment info in the database
             const payment = {
-                email: user?.email,
-                transactionId: paymentIntent.id,
                 price,
-                date: new Date(),
-                quantity: cart.length,
-                cartItems: cart.map(item => item._id),
-                menuItems: cart.map(item => item.menuItemId),
-                status: 'service pending',
-                itemNames: cart.map(item => item.name)
+                transactionId: paymentIntent.id,
+                email: user?.email,
+                paymentId: _id,
+                date: new Date()
             }
-            axiosSecure.post('/payments', payment)
-                .then(res => {
-                    console.log(res.data);
-                    if (res.data.result.insertedId) {
-                        // display confirm
+            // axiosSecure.post('/payments', payment)
+            //     .then(res => {
+            //         console.log(res.data);
+            //         if (res.data.result.insertedId) {
+            //             // display confirm
+            //         }
+            //     })
+
+            fetch('http://localhost:5000/payment', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(payment)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.insertedId) {
+                        // setSuccess('Congrats! your payment completed')
+                        // navigate('/dashboard')
+
                     }
                 })
         }
@@ -116,13 +144,8 @@ const CheckOutForm = () => {
                     Pay
                 </button>
             </form>
-            <p className='text-red-500'>{cardError}</p>
-            {
-                success && <div>
-                    <p className='text-green-500'>{success}</p>
-                    <p>Your transactionIn: <span className='font-bold'>{transactionId}</span></p>
-                </div>
-            }
+            {cardError && <p className="text-red-600 ml-8">{cardError}</p>}
+            {transactionId && <p className="text-green-500">Transaction complete with transactionId: {transactionId}</p>}
         </>
     );
 };
