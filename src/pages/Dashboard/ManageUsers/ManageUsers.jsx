@@ -1,10 +1,8 @@
-import { useContext } from "react";
-import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+
 import { useQuery } from "@tanstack/react-query";
 
 
 const ManageUsers = () => {
-    const { user } = useContext(AuthContext);
     const { data: users = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -15,8 +13,37 @@ const ManageUsers = () => {
 
     console.log(users)
     return (
-        <div>
-            <h2>manage all users</h2>
+        <div className="overflow-x-auto w-full p-10">
+            <table className="table w-full">
+                <thead>
+                    <tr>
+                        <th>
+                        </th>
+                        <th>User Name </th>
+                        <th>Class Email</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        users.map((user, index) => <tr key={user._id}>
+                            <th>
+                                {index + 1}
+                            </th>
+                            <td>{user?.name}</td>
+                            <td>{user?.email}</td>
+                            <th>
+                                <button disabled={user?.role === 'admin'} className="btn btn-success btn-xs">Make Admin</button>
+                            </th>
+                            <th>
+                                <button disabled={user?.role === 'instructor'} className="btn btn-primary btn-xs">Make Instructor</button>
+                            </th>
+                        </tr>)
+                    }
+                </tbody>
+            </table>
+
         </div>
     );
 };

@@ -19,14 +19,14 @@ const Dashboard = () => {
                     <Outlet></Outlet>
 
                 </div>
-                <div className="drawer-side bg-red-300">
+                <div className="drawer-side bg-black text-white">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 pt-10">
 
                         {
                             isAdmin?.admin ? <>
-                                <li className="mb-3 text-lg"><Link to="/dashboard/manageClass"> Manage Users</Link></li>
-                                <li className="mb-3 text-lg"><Link to="/dashboard/manageUser">Mangage Classes</Link></li>
+                                <li className="mb-3 text-lg"><Link to="/dashboard/manageUser">Mangage Users</Link></li>
+                                <li className="mb-3 text-lg"><Link to="/dashboard/manageClass"> Manage Classes</Link></li>
                             </> :
                                 isInstructor?.instructor ? <>
                                     <li className="mb-3 text-lg"><Link to="/dashboard/myClass">My Classes</Link></li>
@@ -36,6 +36,7 @@ const Dashboard = () => {
                                     <>
                                         <li className="mb-3 text-lg"><Link to="/dashboard/selectClass">My Selected Classes</Link></li>
                                         <li className="mb-3 text-lg"><Link to="/dashboard/enrollClass">My Enrolled Classes</Link></li>
+                                        <li className="mb-3 text-lg"><Link to="/dashboard/paymenthistory">My Payment History</Link></li>
                                     </>
                         }
                     </ul>

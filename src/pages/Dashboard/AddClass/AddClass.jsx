@@ -17,7 +17,7 @@ const AddClass = () => {
         const instructorEmail = form.email.value;
         const price = parseInt(form.price.value);
         const availableSeats = parseInt(form.seats.value);
-
+        const studentNumber = parseInt(0);
 
         const addCar = {
             className,
@@ -26,6 +26,7 @@ const AddClass = () => {
             instructorImage,
             instructorEmail,
             availableSeats,
+            studentNumber,
             price,
             status: 'pending'
         }
