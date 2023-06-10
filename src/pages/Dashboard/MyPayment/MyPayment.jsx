@@ -33,7 +33,7 @@ const MyPayment = () => {
                                 {index + 1}
                             </th>
                             <td>{payment?.className}</td>
-                            <td>{payment?.InstructorName}</td>
+                            <td>{payment?.instructorName}</td>
                             <td>{payment?.price}</td>
                             <td>{payment?.transactionId}</td>
                             <td>{payment?.date}</td>

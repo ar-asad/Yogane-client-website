@@ -31,7 +31,7 @@ const Navbar = () => {
         <li><Link to='/instructor'>Instructors</Link></li>
         <li><Link to='/classes'>Classes</Link></li>
         {
-            isAdmin?.admin ? <li><Link to="/dashboard/manageClass">Dashboard</Link></li>
+            isAdmin?.admin ? <li><Link to="/dashboard/manageUser">Dashboard</Link></li>
                 :
                 isInstructor?.instructor ? <li> <Link to="/dashboard/myClass">Dashboard</Link></ li>
                     :
