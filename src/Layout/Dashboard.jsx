@@ -1,9 +1,10 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import Navbar from "../pages/Shared/Navbar/Navbar";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
 
-    const isAdmin = '';
+    const [isAdmin] = useAdmin();
     const isInstructor = '';
 
     return (
@@ -21,8 +22,8 @@ const Dashboard = () => {
 
                         {
                             isAdmin ? <>
-                                <li className="mb-3 text-lg"><Link to="/dashboard/manageUser">Mangage Classes</Link></li>
                                 <li className="mb-3 text-lg"><Link to="/dashboard/manageClass"> Manage Users</Link></li>
+                                <li className="mb-3 text-lg"><Link to="/dashboard/manageUser">Mangage Classes</Link></li>
                             </> :
                                 isInstructor ? <>
                                     <li className="mb-3 text-lg"><Link to="/dashboard/myClass">My Classes</Link></li>

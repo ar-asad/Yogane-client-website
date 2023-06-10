@@ -12,7 +12,6 @@ const MyEnrollClass = () => {
         }
     })
 
-    console.log(myEnrollclass);
 
     return (
         <div>

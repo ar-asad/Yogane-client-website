@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import logo from '../../../assets/home/logo.png';
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
@@ -14,8 +15,8 @@ const Navbar = () => {
         filter: 'brightness(0) saturate(100%) invert(17%) sepia(84%) saturate(4728%) hue-rotate(354deg) brightness(92%) contrast(92%)'
     };
 
+    const [isAdmin] = useAdmin();
     // for testing perpus
-    const isAdmin = '';
     const isInstructor = '';
 
     // user logout
