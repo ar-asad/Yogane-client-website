@@ -3,14 +3,21 @@ import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import useClasses from "../../../hooks/useClasses";
+import useAdmin from "../../../hooks/useAdmin";
+import useInstructor from "../../../hooks/useInstructor";
 
 const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
     const { user } = useContext(AuthContext)
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
     const [refetch] = useClasses();
     const { classImage, className, instructorImage, instructorName, instructorEmail, studentNumber, availableSeats, _id, price } = classInfo;
 
     const navigate = useNavigate();
     const location = useLocation();
+
+    console.log(isAdmin)
+    console.log(isInstructor)
 
     // custom font-family use
     const style = {
@@ -20,7 +27,7 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
     const handleSelect = classInfo => {
         console.log(classInfo);
         if (user && user?.email) {
-            const selectClass = { classId: _id, className, classImage, price, email: user?.email }
+            const selectClass = { classId: _id, className, instructorName, classImage, price, email: user?.email }
             fetch('http://localhost:5000/selectclass', {
                 method: 'POST',
                 headers: {
@@ -85,7 +92,7 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
                         {allClasses && <>
                             <p>Available Seat : {availableSeats}</p>
                             <div className="card-actions justify-start">
-                                <button onClick={() => handleSelect(classInfo)} disabled={availableSeats === 0 || user?.role === 'admin' || user?.role === 'instructor'} className="btn btn-error rounded-sm  lg:px-6 text-white mr-4 mt-2">Select Now</button>
+                                <button onClick={() => handleSelect(classInfo)} disabled={availableSeats === 0 || isAdmin?.admin === true || isInstructor?.instructor === true} className="btn btn-error rounded-sm  lg:px-6 text-white mr-4 mt-2">Select Now</button>
                             </div>
                         </>}
                     </div>

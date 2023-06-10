@@ -1,18 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
-import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+
 import MySelectedClassCard from "../MySelectedClassCard/MySelectedClassCard";
+import useSelectClass from "../../../hooks/useSelectClass";
 
 
 const MySelectedClass = () => {
-    const { user } = useContext(AuthContext);
-    const { refetch, data: mySelectclass = [], isLoading: loading, } = useQuery({
-        queryKey: ['selectclass'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/selectclass?email=${user?.email}`);
-            return res.json();
-        }
-    })
+    const [mySelectclass] = useSelectClass();
 
     const withoutPayClasses = mySelectclass.filter(classes => classes.paid !== true)
     console.log(withoutPayClasses);
@@ -37,7 +29,6 @@ const MySelectedClass = () => {
                             key={selectClass._id}
                             index={index}
                             selectClass={selectClass}
-                            refetch={refetch}
                         >
                         </MySelectedClassCard>)
                     }

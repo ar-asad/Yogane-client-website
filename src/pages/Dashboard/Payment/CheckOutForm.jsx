@@ -12,7 +12,7 @@ const CheckOutForm = ({ payClass }) => {
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
 
-    const { price, _id } = payClass;
+    const { price, _id, className, instructorName } = payClass;
 
 
     // useEffect(() => {
@@ -87,6 +87,8 @@ const CheckOutForm = ({ payClass }) => {
             const payment = {
                 price,
                 transactionId: paymentIntent.id,
+                className,
+                instructorName,
                 email: user?.email,
                 paymentId: _id,
                 date: new Date()

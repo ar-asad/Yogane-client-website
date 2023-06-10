@@ -3,6 +3,7 @@ import logo from '../../../assets/home/logo.png';
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import useAdmin from "../../../hooks/useAdmin";
+import useInstructor from "../../../hooks/useInstructor";
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
@@ -16,8 +17,7 @@ const Navbar = () => {
     };
 
     const [isAdmin] = useAdmin();
-    // for testing perpus
-    const isInstructor = '';
+    const [isInstructor] = useInstructor();
 
     // user logout
     const handleLogOut = () => {
@@ -31,16 +31,22 @@ const Navbar = () => {
         <li><Link to='/instructor'>Instructors</Link></li>
         <li><Link to='/classes'>Classes</Link></li>
         {
-            isAdmin ? <li><Link to="/dashboard/manageClass">Dashboard</Link></li>
+            isAdmin?.admin ? <li><Link to="/dashboard/manageClass">Dashboard</Link></li>
                 :
-                isInstructor ? <li><Link to="/dashboard/myClass">Dashboard</Link></li>
+                isInstructor?.instructor ? <li> <Link to="/dashboard/myClass">Dashboard</Link></ li>
                     :
-                    <li><Link to="/dashboard/selectClass">Dashboard</Link></li>
+                    user ? <li><Link to="/dashboard/selectClass">Dashboard</Link></li>
+                        :
+                        <></>
         }
+
         {
             user ?
-                <li> <button className="btn btn-ghost" onClick={handleLogOut}>Log Out</button></li>
+                <>
+                    <li> <button className="btn btn-ghost" onClick={handleLogOut}>Log Out</button></li>
+                </>
                 :
+
                 <li><Link to='/login'>Login</Link></li>
         }
     </>
@@ -69,7 +75,7 @@ const Navbar = () => {
                 {
                     user &&
                     <div title={user?.displayName} className="avatar mr-4">
-                        <div className="w-14 h-14 rounded-full">
+                        <div className="w-12 h-12 rounded-full">
                             <img src={user?.photoURL} alt='userphoto' />
                         </div>
                     </div>

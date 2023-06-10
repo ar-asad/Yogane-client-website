@@ -16,6 +16,8 @@ import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import AdminRoute from "./AdminRoute";
+import Instructors from "../pages/Home/Instructors/Instructors";
+import InstructorRoutes from "./InstructorRoutes";
 
 
 export const router = createBrowserRouter([
@@ -67,11 +69,11 @@ export const router = createBrowserRouter([
             // Only Instructor dashboard route
             {
                 path: 'addClass',
-                element: <AddClass></AddClass>
+                element: <InstructorRoutes><AddClass></AddClass></InstructorRoutes>
             },
             {
                 path: 'myClass',
-                element: <MyClasses></MyClasses>
+                element: <InstructorRoutes><MyClasses></MyClasses></InstructorRoutes>
             },
 
             // Only admin dashboard route
