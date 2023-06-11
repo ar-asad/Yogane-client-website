@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import logo from '../../../assets/home/logo.png';
-import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructor from "../../../hooks/useInstructor";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { useContext } from "react";
 
-const Navbar = () => {
+const Navbar = ({ handleChangeMode, darkMode }) => {
     const { user, logOut } = useContext(AuthContext)
+
     // custom font-family use
     const style = {
         fontFamily: 'Playfair Display, serif'
@@ -51,6 +53,7 @@ const Navbar = () => {
         }
     </>
 
+
     return (
         <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-xl w-full text-white">
             <div className="navbar-start">
@@ -72,6 +75,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+                <button className="btn border-none mr-2" onClick={handleChangeMode}>{darkMode ? <MdLightMode className="text-black text-3xl"></MdLightMode> : <MdDarkMode className="text-black text-3xl "></MdDarkMode>} </button>
                 {
                     user &&
                     <div title={user?.displayName} className="avatar mr-4">
@@ -80,8 +84,9 @@ const Navbar = () => {
                         </div>
                     </div>
                 }
+
             </div>
-        </div>
+        </div >
     );
 };
 

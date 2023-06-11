@@ -27,11 +27,55 @@ const ManageClass = () => {
     }
 
     const handleDeny = (id) => {
-
+        fetch(`http://localhost:5000/users/deny/${id}`, {
+            method: 'PUT',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Class denied successfully.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
     }
 
-    const handleFeedback = () => {
-
+    const handleFeedback = (id) => {
+        Swal.fire({
+            title: 'Give your Feedback',
+            input: 'text',
+            inputLabel: 'Your Feedback',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'You need to write something!'
+                }
+                fetch(`http://localhost:5000/feedback/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(value)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.modifiedCount > 0) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'give Feedback Successfully.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+            }
+        })
     }
 
     return (
@@ -55,7 +99,7 @@ const ManageClass = () => {
                 </thead>
                 <tbody>
                     {
-                        sortedClasses.map((clas, index) => <tr key={clas._id}>
+                        sortedClasses.map((clas) => <tr key={clas._id}>
                             {/* <th>
                                 {index + 1}
                             </th> */}
@@ -74,17 +118,20 @@ const ManageClass = () => {
                             <td>{clas?.availableSeats}</td>
                             <td>{clas?.price}</td>
                             {/* <td {clas?.status === 'aproved' ? className = "text-red-400 font-semibold" : className = "text-green-400 font-semibold"}>{clas?.status}</td> */}
-                            <td className={clas?.status === "pending" ? "text-red-400 font-semibold" : "text-green-500 font-semibold"}>{clas?.status}</td>
+                            <td className={clas?.status === "pending" ? "text-red-400 font-semibold"
+                                :
+                                clas?.status === "denied" ? "text-red-400 font-semibold"
+                                    : "text-green-500 font-semibold"}>{clas?.status}</td>
                             <th>
                                 <button onClick={() => handleApprove(clas?._id)}
-                                    disabled={clas?.status === 'aproved'} className="btn btn-info btn-xs">Approve</button>
+                                    disabled={clas?.status === 'aproved' || clas?.status === 'denied'} className="btn btn-info btn-xs">Approve</button>
                             </th>
                             <th>
                                 <button onClick={() => handleDeny(clas._id)}
-                                    disabled={clas?.status === 'aproved'} className="btn btn-error btn-xs">Deny</button>
+                                    disabled={clas?.status === 'aproved' || clas?.status === 'denied'} className="btn btn-error btn-xs">Deny</button>
                             </th>
                             <th>
-                                <button onClick={() => handleFeedback(clas._id)} className="btn btn-primary btn-xs">FeedBack</button>
+                                <button onClick={() => handleFeedback(clas?._id)} className="btn btn-primary btn-xs">FeedBack</button>
                             </th>
                         </tr>)
                     }

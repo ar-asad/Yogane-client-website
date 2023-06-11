@@ -16,9 +16,6 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    console.log(isAdmin)
-    console.log(isInstructor)
-
     // custom font-family use
     const style = {
         fontFamily: 'Playfair Display, serif'

@@ -1,8 +1,11 @@
 import useClasses from "../../../hooks/useClasses";
+import useToggleMode from "../../../hooks/useToggleMode";
 import PopularClassCard from "../PopularClassCard/PopularClassCard";
 
 const PopularClasses = () => {
     const [classes] = useClasses();
+    const [darkMode] = useToggleMode();
+    console.log(darkMode)
 
     // custom font-family use
     const style = {
@@ -19,7 +22,7 @@ const PopularClasses = () => {
                 <div className="mx-auto text-center md:w-4/12 mb-4">
                     <p className=' font-semibold text-red-500  uppercase border-b-2 border-red-400'>Popular</p>
                 </div>
-                <h2 className=' lg:text-5xl text-4xl font-bold'>Check Out Some Of <br></br> Our Classes</h2>
+                <h2 className={darkMode ? ' lg:text-5xl text-4xl text-white font-bold' : ' lg:text-5xl text-4xl font-bold'}>Check Out Some Of <br></br> Our Classes</h2>
             </div>
 
             <div className='w-4/5 flex mx-auto'>
