@@ -8,8 +8,6 @@ const MyEnrollClass = () => {
 
     const PaidClasses = mySelectclass.filter(classes => classes.paid === true)
 
-
-
     return (
         <div className="overflow-x-auto w-full p-10">
             <table className="table w-full">

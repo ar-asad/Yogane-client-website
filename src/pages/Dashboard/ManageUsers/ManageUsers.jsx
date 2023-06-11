@@ -52,7 +52,6 @@ const ManageUsers = () => {
             });
     }
 
-    console.log(users)
     return (
         <div className="overflow-x-auto w-full p-10">
             <table className="table w-full">
@@ -62,6 +61,7 @@ const ManageUsers = () => {
                         </th>
                         <th>User Name </th>
                         <th>Class Email</th>
+                        <th>role</th>
                         <th>Action</th>
                         <th>Action</th>
                     </tr>
@@ -74,6 +74,7 @@ const ManageUsers = () => {
                             </th>
                             <td>{user?.name}</td>
                             <td>{user?.email}</td>
+                            <td>{user?.role}</td>
                             <th>
                                 <button onClick={() => handleMakeAdmin(user?._id)} disabled={user?.role === 'admin'} className="btn btn-success btn-xs">Make Admin</button>
                             </th>
