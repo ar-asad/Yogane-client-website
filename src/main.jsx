@@ -12,12 +12,17 @@ import { Toaster } from 'react-hot-toast';
 
 const queryClient = new QueryClient()
 
+// custom style
+const style = {
+  fontFamily: 'Playfair Display, serif'
+};
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
       {/* <HelmetProvider> */}
       <QueryClientProvider client={queryClient}>
-        <div className='max-w-screen-xl mx-auto'>
+        <div style={style} className='max-w-screen-xl mx-auto'>
           <RouterProvider router={router} />
           <Toaster />
         </div>

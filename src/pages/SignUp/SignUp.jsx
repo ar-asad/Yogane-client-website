@@ -1,6 +1,6 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { FaLock, FaUserCircle, FaUnlockAlt } from "react-icons/fa";
-import { BsDownload } from "react-icons/bs";
+import { BsDownload, BsEye, BsEyeSlash } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 
 
@@ -12,6 +12,8 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
     const [error, setError] = useState(null);
+    const [togglePassword, setTogglePassword] = useState(false)
+    const [togglePasswordConfirm, setTogglePasswordConfirm] = useState(false)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     // const navigate = useNavigate();
@@ -131,7 +133,7 @@ const SignUp = () => {
                                     >
                                 </div>
                                 <input
-                                    type="password"
+                                    type={togglePassword ? "text" : "password"}
                                     {...register("password", {
                                         required: true,
                                         minLength: 6,
@@ -141,9 +143,15 @@ const SignUp = () => {
                                     className="flex-shrink flex-grow  leading-normal w-px flex-1 border-0 h-10 px-3 relative self-center font-roboto text-xl outline-none"
                                     placeholder="Password"
                                 />
-
+                                <div onClick={() => setTogglePassword(!togglePassword)} className="flex mr-2">
+                                    {
+                                        togglePassword ? <BsEyeSlash className="text-2xl"></BsEyeSlash>
+                                            :
+                                            <BsEye className="text-2xl"></BsEye>
+                                    }
+                                </div>
                             </div>
-                            {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
+
                             {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
                             {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 12 characters</p>}
                             {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase, one special character.</p>}
@@ -161,13 +169,20 @@ const SignUp = () => {
                                     >
                                 </div>
                                 <input
-                                    type="password"
+                                    type={togglePasswordConfirm ? "text" : "password"}
                                     {...register("ConfirmPassword", {
                                         required: true
                                     })}
                                     className="flex-shrink flex-grow  leading-normal w-px flex-1 border-0 h-10 px-3 relative self-center font-roboto text-xl outline-none"
                                     placeholder="ConfirmPassword"
                                 />
+                                <div onClick={() => setTogglePasswordConfirm(!togglePasswordConfirm)} className="flex mr-2">
+                                    {
+                                        togglePasswordConfirm ? <BsEyeSlash className="text-2xl"></BsEyeSlash>
+                                            :
+                                            <BsEye className="text-2xl"></BsEye>
+                                    }
+                                </div>
                             </div>
                             {errors.ConfirmPassword?.type === 'required' && <p className="text-red-600">ConfirmPassword is required</p>}
                             {error && <p className='text-red-500 font-semibold mt-2'>{error}</p>}

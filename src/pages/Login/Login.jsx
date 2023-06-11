@@ -5,10 +5,12 @@ import SocialLogin from "./SocialLogin/SocialLogin";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
     const [error, setError] = useState(null);
+    const [togglePassword, setTogglePassword] = useState(false)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     let location = useLocation();
@@ -64,17 +66,17 @@ const Login = () => {
                                     >
                                 </div>
                                 <input
-                                    type="password"
+                                    type={togglePassword ? "text" : "password"}
                                     {...register("password", { required: true })}
                                     className="flex-shrink flex-grow  leading-normal w-px flex-1 border-0 h-10 px-3 relative self-center font-roboto text-xl outline-none"
                                     placeholder="Password"
                                 />
-                                <div className="flex -mr-px">
-                                    <span
-                                        className="flex items-center leading-normal bg-white rounded rounded-l-none border-0 px-3 whitespace-no-wrap text-gray-600"
-                                    >
-                                        <i className="fas fa-eye-slash"></i>
-                                    </span>
+                                <div onClick={() => setTogglePassword(!togglePassword)} className="flex mr-2">
+                                    {
+                                        togglePassword ? <BsEyeSlash className="text-2xl"></BsEyeSlash>
+                                            :
+                                            <BsEye className="text-2xl"></BsEye>
+                                    }
                                 </div>
                             </div>
                             {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
