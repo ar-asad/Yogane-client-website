@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthProvider/AuthProvider";
 import axios from "axios";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://yogane-server-side-arasad1.vercel.app/',
 });
 
 const useAxios = () => {

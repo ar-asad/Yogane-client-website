@@ -16,7 +16,6 @@ import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import AdminRoute from "./AdminRoute";
-import Instructors from "../pages/Home/Instructors/Instructors";
 import InstructorRoutes from "./InstructorRoutes";
 import MyPayment from "../pages/Dashboard/MyPayment/MyPayment";
 
@@ -68,7 +67,7 @@ export const router = createBrowserRouter([
             {
                 path: 'payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/selectclass/${params.id}`)
+                loader: ({ params }) => fetch(`https://yogane-server-side-arasad1.vercel.app/selectclass/${params.id}`)
             },
 
             // Only Instructor dashboard route

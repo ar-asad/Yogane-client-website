@@ -11,12 +11,7 @@ AOS.init();
 const PopularClasses = () => {
     const [classes] = useClasses();
     const [darkMode] = useToggleMode();
-    console.log(darkMode)
 
-    // custom font-family use
-    const style = {
-        fontFamily: 'Playfair Display, serif'
-    };
 
     const sortedByStudents = [...classes].sort((a, b) => b.studentNumber - a.studentNumber);
 
@@ -24,7 +19,7 @@ const PopularClasses = () => {
 
     return (
         <div className=''>
-            <div style={style} className='text-center my-24 '>
+            <div className='text-center my-24 '>
                 <div className="mx-auto text-center md:w-4/12 mb-4">
                     <p data-aos="fade-right" className=' font-semibold text-red-500 w-1/2 mx-auto uppercase border-b-2 border-red-400'>Popular</p>
                 </div>

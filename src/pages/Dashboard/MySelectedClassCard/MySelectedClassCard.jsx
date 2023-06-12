@@ -18,7 +18,7 @@ const MySelectedClassCard = ({ selectClass, index, refetch }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/selectclass/${selectClass?._id}`, {
+                fetch(`https://yogane-server-side-arasad1.vercel.app/selectclass/${selectClass?._id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())

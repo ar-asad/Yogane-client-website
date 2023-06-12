@@ -5,7 +5,6 @@ import CheckOutForm from "./CheckOutForm";
 
 // const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
 const stripePromise = loadStripe('pk_test_51N5nhKEvhOZV6x6TPUMU2WBYxoTPqBZwu4P2aps8nXJUFCMEY4CAeDXSjvsVLkTYQ66IDuvYyCs5SrxzR7v8ckST00vtAHh20S');
-console.log(stripePromise);
 
 const Payment = () => {
     const payClass = useLoaderData();

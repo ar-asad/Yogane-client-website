@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
 
             // get token from server and store local storage 
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt', { email: currentUser.email })
+                axios.post('https://yogane-server-side-arasad1.vercel.app/jwt', { email: currentUser.email })
                     .then(data => {
                         localStorage.setItem('access-token', data.data.token)
                         setLoading(false);

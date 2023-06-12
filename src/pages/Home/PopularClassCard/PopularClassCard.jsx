@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
-import useClasses from "../../../hooks/useClasses";
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructor from "../../../hooks/useInstructor";
 
@@ -10,7 +9,6 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
     const { user } = useContext(AuthContext)
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
-    const [refetch] = useClasses();
     const { classImage, className, instructorImage, instructorName, instructorEmail, studentNumber, availableSeats, _id, price } = classInfo;
 
     const navigate = useNavigate();
@@ -25,7 +23,7 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
         console.log(classInfo);
         if (user && user?.email) {
             const selectClass = { classId: _id, className, instructorName, classImage, price, email: user?.email }
-            fetch('http://localhost:5000/selectclass', {
+            fetch('https://yogane-server-side-arasad1.vercel.app/selectclass', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

@@ -20,7 +20,7 @@ const SocialLogin = () => {
                     name: logInUser.displayName,
                     email: logInUser.email
                 }
-                fetch('http://localhost:5000/users', {
+                fetch('https://yogane-server-side-arasad1.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

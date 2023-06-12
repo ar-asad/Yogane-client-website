@@ -10,7 +10,7 @@ import useAxios from "../../../hooks/useAxios";
 // })
 const ManageUsers = () => {
     const [axiosSecure] = useAxios();
-    const { data: users = [], refetch } = useQuery({
+    const { data: users = [], refetch, isLoading: loading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get("/users");
@@ -20,7 +20,7 @@ const ManageUsers = () => {
 
     // click to user make admin
     const handleMakeAdmin = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://yogane-server-side-arasad1.vercel.app/users/admin/${id}`, {
             method: 'PUT',
         })
             .then(res => res.json())
@@ -40,7 +40,7 @@ const ManageUsers = () => {
 
     // click to user make Instructor
     const handleMakeInstructor = id => {
-        fetch(`http://localhost:5000/users/instructor/${id}`, {
+        fetch(`https://yogane-server-side-arasad1.vercel.app/users/instructor/${id}`, {
             method: 'PUT',
         })
             .then(res => res.json())
@@ -56,6 +56,10 @@ const ManageUsers = () => {
                     });
                 }
             });
+    }
+
+    if (loading) {
+        return <progress className="progress w-56 ms-36 mt-32"></progress>
     }
 
     return (

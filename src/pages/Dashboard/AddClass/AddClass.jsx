@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
-import Swal from "sweetalert2";
 import useAxios from "../../../hooks/useAxios";
 import { toast } from "react-hot-toast";
 

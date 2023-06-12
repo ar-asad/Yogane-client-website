@@ -1,13 +1,16 @@
-import Aos from 'aos';
+
 import img1 from '../../../assets/services/service1.png'
 import img2 from '../../../assets/services/service2.png'
 import img3 from '../../../assets/services/service3.png'
 import img4 from '../../../assets/services/service4.png'
 import OurService from '../OurService/OurService';
-import 'animate.css';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init();
 
 const OurServices = () => {
-    Aos.init()
     const services = [
         {
             id: 1,

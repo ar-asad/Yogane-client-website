@@ -23,7 +23,7 @@ const CheckOutForm = ({ payClass }) => {
     //         })
     // }, [])
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://yogane-server-side-arasad1.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -102,7 +102,7 @@ const CheckOutForm = ({ payClass }) => {
             //         }
             //     })
 
-            fetch('http://localhost:5000/payment', {
+            fetch('https://yogane-server-side-arasad1.vercel.app/payment', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",

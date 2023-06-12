@@ -7,7 +7,7 @@ const MyClasses = () => {
     const { data: myClasses = [] } = useQuery({
         queryKey: ['myClasses'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/classes?email=${user?.email}`);
+            const res = await fetch(`https://yogane-server-side-arasad1.vercel.app/classes?email=${user?.email}`);
             return res.json();
         }
     })

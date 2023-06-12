@@ -8,7 +8,7 @@ const ManageClass = () => {
     const sortedClasses = classes?.sort((a, b) => (a._id > b._id ? -1 : 1))
 
     const handleApprove = (id) => {
-        fetch(`http://localhost:5000/users/approve/${id}`, {
+        fetch(`https://yogane-server-side-arasad1.vercel.app/users/approve/${id}`, {
             method: 'PUT',
         })
             .then(res => res.json())
@@ -27,7 +27,7 @@ const ManageClass = () => {
     }
 
     const handleDeny = (id) => {
-        fetch(`http://localhost:5000/users/deny/${id}`, {
+        fetch(`https://yogane-server-side-arasad1.vercel.app/users/deny/${id}`, {
             method: 'PUT',
         })
             .then(res => res.json())
@@ -56,7 +56,7 @@ const ManageClass = () => {
                     return 'You need to write something!'
                 }
                 console.log(value)
-                fetch(`http://localhost:5000/feedback/${id}`, {
+                fetch(`https://yogane-server-side-arasad1.vercel.app/feedback/${id}`, {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'

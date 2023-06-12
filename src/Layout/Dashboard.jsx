@@ -8,16 +8,18 @@ import { BiBookContent } from "react-icons/bi";
 import { TfiWrite } from "react-icons/tfi";
 import { BsBookmarkCheckFill, BsFillCartFill } from "react-icons/bs";
 import { GiWallet } from "react-icons/gi";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
 
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
-    console.log(isInstructor)
-    console.log(isAdmin)
 
     return (
         <div>
+            <Helmet>
+                <title>Yogane | Dashboard</title>
+            </Helmet>
             <Navbar></Navbar>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
