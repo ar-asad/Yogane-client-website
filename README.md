@@ -1,15 +1,16 @@
 # Yogane
 
-### Website Live Link:[https://toy-town-7fb1e.web.app/](https://toy-town-7fb1e.web.app/)
+### Website Live Link:[https://yogane-e1b89.web.app/](https://yogane-e1b89.web.app/)
 
 
-### About AUTOMOTIVE:
-- The website is a toy car-selling website.
+### About Yogane:
 - User Google Sign in and Email/Password Login are secured by Firebase authentication.
 - Implemented CRUD method with MongoDB database.
-- User can also added a toy car and also update and delete the car.
-- Users can easily add, delete, and update toy cars with this system, and access valuable customer reviews.
-- Have a blog componet there I given some question answer.
+- An User can buy yoga courses from here.
+- An Instructor can add a their yoga classes.
+- An Admin can also make a user andmin and Instructor.
+- Users can easily payment thier bookmark yoga courses.
+- Implemented JWT for more security purpose.
 
 
 # Technology Used:
@@ -18,9 +19,11 @@
 - Firebase
 - Tailwind CSS
 - daisyUI
+- JWT
 - React useQuery
-- React-lazy-load
+- AOS
 - React Icons
+- Sweet Alert
 - React Toastify
 - Node js
 - Dotenv
