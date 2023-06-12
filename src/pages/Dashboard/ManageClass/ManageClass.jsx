@@ -55,12 +55,13 @@ const ManageClass = () => {
                 if (!value) {
                     return 'You need to write something!'
                 }
+                console.log(value)
                 fetch(`http://localhost:5000/feedback/${id}`, {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify(value)
+                    body: JSON.stringify({ value })
                 })
                     .then(res => res.json())
                     .then(data => {
@@ -79,9 +80,9 @@ const ManageClass = () => {
     }
 
     return (
-        <div className="overflow-x-auto w-full p-10 ps-2">
+        <div className="overflow-x-auto w-full p-10 ps-2 mt-16">
             <table className="table w-full">
-                <thead>
+                <thead className="bg-gray-200">
                     <tr>
 
                         <th>Class </th>

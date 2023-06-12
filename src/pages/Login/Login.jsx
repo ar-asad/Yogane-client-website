@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
@@ -22,6 +23,7 @@ const Login = () => {
         signIn(data.email, data.password)
             .then(result => {
                 console.log(result.user);
+                toast.success('User login Successfully');
                 navigate(from, { replace: true });
                 reset();
             })

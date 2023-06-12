@@ -12,8 +12,8 @@ const CheckOutForm = ({ payClass }) => {
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
 
-    const { price, _id, className, instructorName } = payClass;
-
+    const { price, className, _id, classId, instructorName } = payClass;
+    console.log(payClass);
 
     // useEffect(() => {
     //     axiosSecure.post('/create-payment-intent', { price })
@@ -90,7 +90,8 @@ const CheckOutForm = ({ payClass }) => {
                 className,
                 instructorName,
                 email: user?.email,
-                paymentId: _id,
+                paymentId: classId,
+                selectedId: _id,
                 date: new Date()
             }
             // axiosSecure.post('/payments', payment)

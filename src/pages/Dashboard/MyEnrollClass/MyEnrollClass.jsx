@@ -1,6 +1,4 @@
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
+
 import useSelectClass from "../../../hooks/useSelectClass";
 
 const MyEnrollClass = () => {
@@ -9,9 +7,9 @@ const MyEnrollClass = () => {
     const PaidClasses = mySelectclass.filter(classes => classes.paid === true)
 
     return (
-        <div className="overflow-x-auto w-full p-10">
+        <div className="overflow-x-auto w-full p-10 mt-16">
             <table className="table w-full">
-                <thead>
+                <thead className="bg-gray-200">
                     <tr>
                         <th>
                         </th>
@@ -30,13 +28,13 @@ const MyEnrollClass = () => {
                                 <div className="flex items-center space-x-3">
                                     <div className="avatar">
                                         <div className="mask mask-squircle w-14 h-14">
-                                            <img src={classes.classImage} alt="yogaclass" />
+                                            <img src={classes?.classImage} alt="yogaclass" />
                                         </div>
                                     </div>
                                 </div>
                             </td>
-                            <td>{classes.className}</td>
-                            <td>{classes.instructorName}</td>
+                            <td>{classes?.className}</td>
+                            <td>{classes?.instructorName}</td>
                         </tr>)
                     }
                 </tbody>

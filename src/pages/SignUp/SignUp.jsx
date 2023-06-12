@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FaLock, FaUserCircle, FaUnlockAlt } from "react-icons/fa";
 import { BsDownload, BsEye, BsEyeSlash } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
@@ -9,6 +9,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { toast } from "react-hot-toast";
 
 const SignUp = () => {
     const [error, setError] = useState(null);
@@ -16,7 +17,8 @@ const SignUp = () => {
     const [togglePasswordConfirm, setTogglePasswordConfirm] = useState(false)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
-    // const navigate = useNavigate();
+
+    const navigate = useNavigate();
 
     const onSubmit = data => {
 
@@ -38,14 +40,8 @@ const SignUp = () => {
                             .then(data => {
                                 if (data.insertedId) {
                                     reset();
-                                    Swal.fire({
-                                        position: 'center',
-                                        icon: 'success',
-                                        title: 'User created successfully.',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                    Navigate('/');
+                                    toast.success('User Created Successfully');
+                                    navigate('/');
                                 }
                             })
                     })

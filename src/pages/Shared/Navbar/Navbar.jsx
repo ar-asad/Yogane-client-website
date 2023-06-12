@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from '../../../assets/home/logo.png';
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import useAdmin from "../../../hooks/useAdmin";
@@ -20,11 +20,13 @@ const Navbar = ({ handleChangeMode, darkMode }) => {
 
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
-
+    const navigate = useNavigate();
     // user logout
     const handleLogOut = () => {
         logOut()
-            .then(() => { })
+            .then(() => {
+                navigate('/');
+            })
             .catch(error => console.log(error));
     }
 
@@ -33,9 +35,9 @@ const Navbar = ({ handleChangeMode, darkMode }) => {
         <li><Link to='/instructor'>Instructors</Link></li>
         <li><Link to='/classes'>Classes</Link></li>
         {
-            isAdmin?.admin ? <li><Link to="/dashboard/manageUser">Dashboard</Link></li>
+            isAdmin ? <li><Link to="/dashboard/manageUser">Dashboard</Link></li>
                 :
-                isInstructor?.instructor ? <li> <Link to="/dashboard/myClass">Dashboard</Link></ li>
+                isInstructor ? <li> <Link to="/dashboard/myClass">Dashboard</Link></ li>
                     :
                     user ? <li><Link to="/dashboard/selectClass">Dashboard</Link></li>
                         :
@@ -55,7 +57,7 @@ const Navbar = ({ handleChangeMode, darkMode }) => {
 
 
     return (
-        <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-xl w-full text-white">
+        <div className="navbar py-0 sticky top-0 lg:fixed z-10 bg-black lg:rounded-full bg-opacity-30 max-w-screen-xl w-full text-black lg:text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -75,7 +77,7 @@ const Navbar = ({ handleChangeMode, darkMode }) => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <button className="btn border-none mr-2" onClick={handleChangeMode}>{darkMode ? <MdLightMode className="text-black text-3xl"></MdLightMode> : <MdDarkMode className="text-black text-3xl "></MdDarkMode>} </button>
+                <button className="btn btn-sm border-none mr-2" onClick={handleChangeMode}>{darkMode ? <MdLightMode className="text-black text-2xl"></MdLightMode> : <MdDarkMode className="text-black text-2xl "></MdDarkMode>} </button>
                 {
                     user &&
                     <div title={user?.displayName} className="avatar mr-4">

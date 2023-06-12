@@ -17,7 +17,7 @@ const Payment = () => {
     }
 
     return (
-        <div>
+        <div className="mt-20 mx-10">
             <h2 className='text-4xl mb-5'>Payment for {className}</h2>
             <p className='text-xl'>Please pay <strong>${price}</strong> for your selectedClass.</p>
 

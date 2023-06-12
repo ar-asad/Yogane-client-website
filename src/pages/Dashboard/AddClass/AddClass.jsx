@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxios from "../../../hooks/useAxios";
+import { toast } from "react-hot-toast";
 
 
 const AddClass = () => {
+    const [axiosSecure] = useAxios();
     const { user } = useContext(AuthContext);
 
 
@@ -19,7 +22,7 @@ const AddClass = () => {
         const availableSeats = parseInt(form.seats.value);
         const studentNumber = parseInt(0);
 
-        const addCar = {
+        const addClass = {
             className,
             classImage,
             instructorName,
@@ -30,27 +33,13 @@ const AddClass = () => {
             price,
             status: 'pending'
         }
-        console.log(addCar)
-        fetch('http://localhost:5000/classes ', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(addCar)
-        })
-            .then(res => res.json())
+        axiosSecure.post('/classes ', addClass)
             .then(data => {
                 console.log(data);
                 form.reset();
-                if (data.insertedId) {
+                if (data.data.insertedId) {
                     // refetch();
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'This class added Successfully.',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
+                    toast.success('This Class Successfully');
                 }
                 else {
                     // toast.error(data.message)
@@ -60,7 +49,7 @@ const AddClass = () => {
     }
 
     return (
-        <div className='flex justify-center my-12'>
+        <div className='flex justify-center mt-20'>
             <div className="card lg:w-2/3 p-4 w-full border-2 border-inherit  ">
                 <div>
                     <h3 className="text-4xl font-medium text-center mt-4 mb-10 text-gray-700">

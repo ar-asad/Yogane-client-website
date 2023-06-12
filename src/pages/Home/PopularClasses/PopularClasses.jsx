@@ -2,6 +2,12 @@ import useClasses from "../../../hooks/useClasses";
 import useToggleMode from "../../../hooks/useToggleMode";
 import PopularClassCard from "../PopularClassCard/PopularClassCard";
 
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+AOS.init();
+
 const PopularClasses = () => {
     const [classes] = useClasses();
     const [darkMode] = useToggleMode();
@@ -17,12 +23,12 @@ const PopularClasses = () => {
     const topSixClasses = sortedByStudents.slice(0, 6);
 
     return (
-        <div className='pt-1 pb-20'>
+        <div className=''>
             <div style={style} className='text-center my-24 '>
                 <div className="mx-auto text-center md:w-4/12 mb-4">
-                    <p className=' font-semibold text-red-500  uppercase border-b-2 border-red-400'>Popular</p>
+                    <p data-aos="fade-right" className=' font-semibold text-red-500 w-1/2 mx-auto uppercase border-b-2 border-red-400'>Popular</p>
                 </div>
-                <h2 className={darkMode ? ' lg:text-5xl text-4xl text-white font-bold' : ' lg:text-5xl text-4xl font-bold'}>Check Out Some Of <br></br> Our Classes</h2>
+                <h2 data-aos="fade-left" className={darkMode ? ' lg:text-5xl text-4xl text-white font-bold' : ' lg:text-5xl text-4xl font-bold'}>Check Out Some Of <br></br> Our Classes</h2>
             </div>
 
             <div className='w-4/5 flex mx-auto'>

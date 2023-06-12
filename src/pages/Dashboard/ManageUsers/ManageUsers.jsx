@@ -1,14 +1,20 @@
 
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useAxios from "../../../hooks/useAxios";
 
-
+// const [axiosSecure] = useAxiosSecure();
+// const { data: users = [], refetch } = useQuery(['users'], async () => {
+//     const res = await axiosSecure.get('/users')
+//     return res.data;
+// })
 const ManageUsers = () => {
+    const [axiosSecure] = useAxios();
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/users");
-            return res.json();
+            const res = await axiosSecure.get("/users");
+            return res.data;
         }
     })
 
@@ -53,9 +59,9 @@ const ManageUsers = () => {
     }
 
     return (
-        <div className="overflow-x-auto w-full p-10">
+        <div className="overflow-x-auto w-full p-10 mt-16">
             <table className="table w-full">
-                <thead>
+                <thead className="bg-gray-200">
                     <tr>
                         <th>
                         </th>

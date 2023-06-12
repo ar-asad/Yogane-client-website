@@ -63,10 +63,14 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
 
     }
 
+    const cardStyle = {
+        backgroundColor: availableSeats === 0 && 'red',
+    };
+
     return (
-        <div className={onlyClasses ? "card bg-base-100 shadow-xl" : "card bg-base-100 shadow-xl rounded-none"}>
+        <div style={cardStyle} className={onlyClasses ? "card bg-base-100 shadow-xl" : "card bg-base-100 shadow-xl rounded-none "}>
             {
-                onlyClasses ? <figure><img src={classImage} alt="Yoga" /></figure>
+                onlyClasses ? <figure><img className="hover:scale-125 duration-500 ease-in-out " src={classImage} alt="Yoga" /></figure>
                     :
                     <figure><img src={instructorImage} alt="Yoga" /></figure>
             }
@@ -83,7 +87,7 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
                     <div className="card-body mt-8 px-2">
                         <div className="flex justify-between">
                             <h2 className="card-title">{className}-Yoga</h2>
-                            {allClasses && <h3 style={style} className="text-center font-semibold text-4xl text-red-500 mr-6 underline">${studentNumber}</h3>}
+                            {allClasses && <h3 style={style} className="text-center font-semibold text-4xl text-red-500 mr-6 underline">${price}</h3>}
                         </div>
                         {onlyClasses && <p>Student Number : {studentNumber}</p>}
                         {allClasses && <>

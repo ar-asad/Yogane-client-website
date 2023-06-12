@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import useSelectClass from "../../../hooks/useSelectClass";
 
 
-const MySelectedClassCard = ({ selectClass, index }) => {
+const MySelectedClassCard = ({ selectClass, index, refetch }) => {
     const { classImage, className, price } = selectClass;
-    const [refetch] = useSelectClass();
 
     // Deleting my added a classes....
     const handleDeleteClass = selectClass => {

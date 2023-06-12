@@ -14,9 +14,9 @@ const MyClasses = () => {
     console.log(myClasses)
 
     return (
-        <div className="overflow-x-auto w-full p-10">
+        <div className="overflow-x-auto w-full p-10 mt-16">
             <table className="table w-full">
-                <thead>
+                <thead className="bg-gray-200">
                     <tr>
                         <th>
                         </th>
@@ -45,6 +45,7 @@ const MyClasses = () => {
                             <td>{classes?.className}</td>
                             <td>{classes?.studentNumber}</td>
                             <td className="text-red-400 font-semibold">{classes?.status}</td>
+                            <td>{classes?.feedback}</td>
                         </tr>)
                     }
                 </tbody>

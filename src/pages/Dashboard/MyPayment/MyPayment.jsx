@@ -1,21 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
+import useAxios from "../../../hooks/useAxios";
 
 const MyPayment = () => {
     const { user } = useContext(AuthContext)
+    const [axiosSecure] = useAxios();
     const { data: myPayments = [] } = useQuery({
         queryKey: ['myPayments'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/payment?email=${user?.email}`);
-            return res.json();
+            const res = await axiosSecure.get(`/payment?email=${user?.email}`);
+            return res.data;
         }
     })
-    console.log(myPayments)
     return (
-        <div className="overflow-x-auto w-full p-10">
+        <div className="overflow-x-auto w-full p-10 mt-16">
             <table className="table w-full">
-                <thead>
+                <thead className="bg-gray-200">
                     <tr>
                         <th>
                         </th>
