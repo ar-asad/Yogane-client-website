@@ -94,13 +94,7 @@ const CheckOutForm = ({ payClass }) => {
                 selectedId: _id,
                 date: new Date()
             }
-            // axiosSecure.post('/payments', payment)
-            //     .then(res => {
-            //         console.log(res.data);
-            //         if (res.data.result.insertedId) {
-            //             // display confirm
-            //         }
-            //     })
+
 
             fetch('https://yogane-server-side-arasad1.vercel.app/payment', {
                 method: 'POST',

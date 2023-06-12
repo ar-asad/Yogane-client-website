@@ -12,9 +12,11 @@ import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
 
-    const [isAdmin] = useAdmin();
-    const [isInstructor] = useInstructor();
-
+    const [isAdmin, isAdminLoading] = useAdmin();
+    const [isInstructor, isInstructorLoading] = useInstructor();
+    if (isAdminLoading || isInstructorLoading) {
+        return <progress className="progress w-56 ms-36 mt-32"></progress>
+    }
     return (
         <div>
             <Helmet>
