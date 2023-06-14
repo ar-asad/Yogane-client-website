@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaLock, FaUserCircle, FaUnlockAlt } from "react-icons/fa";
 import { BsDownload, BsEye, BsEyeSlash } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";

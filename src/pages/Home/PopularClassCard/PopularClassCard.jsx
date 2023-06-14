@@ -91,7 +91,7 @@ const PopularClassCard = ({ classInfo, onlyClasses, allClasses }) => {
                         {allClasses && <>
                             <p>Available Seat : {availableSeats}</p>
                             <div className="card-actions justify-start">
-                                <button onClick={() => handleSelect(classInfo)} disabled={availableSeats === 0 || isAdmin?.admin === true || isInstructor?.instructor === true} className="btn btn-error rounded-sm  lg:px-6 text-white mr-4 mt-2">Select Now</button>
+                                <button onClick={() => handleSelect(classInfo)} disabled={availableSeats === 0 || isAdmin === true || isInstructor} className="btn btn-error rounded-sm  lg:px-6 text-white mr-4 mt-2">Select Now</button>
                             </div>
                         </>}
                     </div>
