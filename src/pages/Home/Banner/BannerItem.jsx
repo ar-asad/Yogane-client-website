@@ -2,7 +2,7 @@ import './BannerItem.css';
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 const BannerItem = ({ data }) => {
-    const { image, prev, next, id } = data;
+    const { image, prev, next, id } = data;f
 
     return (
         <div id={`slide${id}`} className="carousel-item relative w-full">

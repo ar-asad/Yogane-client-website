@@ -4,13 +4,10 @@
 
 
 ### About Yogane:
-- User Google Sign in and Email/Password Login are secured by Firebase authentication.
+- Used JWT for security purposes and implemented Firebase authentication
 - Implemented CRUD method with MongoDB database.
-- An User can buy yoga courses from here.
-- An Instructor can add a their yoga classes.
-- An Admin can also make a user andmin and Instructor.
-- Users can easily payment thier bookmark yoga courses.
-- Implemented JWT for more security purpose.
+- A separate Dashboard is available for users, instructors and Admins with different facilities.
+- Used MongoDB database for store whole website data and Used Stripe for making payment gateway.
 
 
 # Technology Used:
