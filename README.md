@@ -11,8 +11,9 @@
 
 
 # Technology Used:
-- ReactJS
+- Vite
 - React Router
+- Axios
 - Firebase
 - Tailwind CSS
 - daisyUI
